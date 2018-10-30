@@ -11,7 +11,7 @@ GAME RULES:
 //Reference
 
     document.querySelector('.dice'); --> Query from class 'dice'
-    document.querySelector('#score-0); --> Query from class id 'score-0'
+    document.querySelector('#score-0); --> Query from class id 'score-0'  //better if up getElementById
     document.getElementById('current-0') --> Query from class id 'current-0'
 
 */
