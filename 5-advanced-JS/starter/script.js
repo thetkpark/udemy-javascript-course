@@ -245,6 +245,135 @@ game();
 
 /////////////////////////////
 // Lecture: Closures
+//Outer function can access inner function's variable even if it got returned
+/*
+function retirement(retirementAge){
+    var a = ' years left untill retirement.';
+    return function(yearOfBirth){
+        var age = 2018 - yearOfBirth;
+        console.log( (retirementAge-age) + a);
+    }
+}
 
+var retirementUS = retirement(66);
+//These are the same 
+retirementUS(1990);
+retirement(66)(1990);
+
+var retirementGermany = retirement(65)
+var retirementIceland = retirement(67)
+
+retirementGermany(1990);
+retirementIceland(1990);
+
+
+function interviewQuestion(job){
+
+    return function(name){
+        if(job === 'designer'){
+            console.log(name + ', can you please explain what UX design is?');
+        }
+        else if(job === 'teacher'){
+            console.log('What subject do you teach, ' + name + '?');
+        }
+        else {
+            console.log('Hello ' + name + ', what do you do?');
+        }
+    }
+}
+
+interviewQuestion('designer')('Jane');
+interviewQuestion('teacher')('John');
+*/
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////
+// Lecture: Bind, call and apply
+/*
+var john = {
+    name: 'John',
+    age: 26,
+    job: 'teacher',
+    presentations: function(style, timeOfDay){
+        if(style === 'formal'){
+            console.log('Good ' + timeOfDay + ',Ladies and gentlemen! I\'m ' + this.name + '. I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old');
+        }
+        else if(style === 'friendly'){
+            console.log('Hey! What\'s up? I\'m ' + this.name + '. I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
+        }
+    }
+};
+
+var emily = {
+    name: 'Emily',
+    age: 35,
+    job: 'designer',
+};
+
+
+john.presentations('formal', 'morning');
+//borrow john's method and set 'this' = 'emily'
+john.presentations.call(emily, 'friendly', 'afternoon');
+
+//as same as call method but accept arugment as array
+//john.presentations.apply(emily, ['friendly', 'afternoon']);
+
+//useful for preset param function
+var johnFriendly = john.presentations.bind(john, 'friendly');
+johnFriendly('morning');
+johnFriendly('night');
+
+var emilyFormal = john.presentations.bind(emily, 'formal');
+emilyFormal('afternoon');
+
+
+
+
+
+var years = [1990, 1965, 1937, 2005, 2000];
+
+function arrayCalc (array, fn) {
+    var arrRes = [];
+    for(var i=0;i<array.length;i++){
+        arrRes.push( fn(array[i]) ); 
+        //add result of function 'fn' of array[i] to 'arrRes'
+    }
+    return arrRes;
+}
+//function below is a callback function (call this function later)
+function calculateAge (element){
+
+    return 2018-element;
+}
+
+function isFullAge (limit, element) {
+    return element >= limit;
+    //return boolean (T or F)
+}
+
+var ages = arrayCalc(years, calculateAge);
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(ages);
+console.log(fullJapan)
+*/
+
+
+
+
+
+
+
+
+
+/////////////////////////////
+// CODING CHALLENGE
 
 
