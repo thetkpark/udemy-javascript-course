@@ -377,3 +377,45 @@ console.log(fullJapan)
 // CODING CHALLENGE
 
 
+while(1){
+function Question(question,answer,correct){
+    this.question = question,
+    this.answer = answer,
+    this.correct = correct
+}
+
+Question.prototype.showQuestion = function(){
+    console.log(this.question);
+    for(var i=0;i<this.answer.length;i++){
+        console.log(i + '. ' + this.answer[i]);
+    }
+}
+
+Question.prototype.checkAnswer = function(answer){
+    if(answer === this.correct){
+        console.log('Correct!!');
+    }
+    else {
+        console.log('Wrong!!');
+    }
+}
+
+var q1 = new Question('Is JavaScript the coolest programming language in the world?', ['Yes', 'No'], 0);
+var q2 = new Question('Is this a real life', ['Is this just fantasy', 'Nahhh'], 0);
+var q3 = new Question('How are you?', ['Fuck off', 'Fine'], 1);
+
+var question = [q1,q2,q3];
+
+var number = Math.floor(Math.random() * question.length);
+
+question[number].showQuestion();
+
+var ans = parseInt(prompt('Please select the correct answer.'));
+
+question[number].checkAnswer(ans);
+}
+
+
+
+
+

@@ -368,7 +368,7 @@ c) correct answer (I would use a number for this)
 
     var questions = [q1, q2, q3];
 
-    var n = Math.floor(Math.random() * questions.length);
+    var n = Math.floor(Math.random() * questions.length);wdasdwdasdw
 
     questions[n].displayQuestion();
 
