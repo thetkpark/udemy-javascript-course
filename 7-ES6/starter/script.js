@@ -128,7 +128,7 @@ console.log(`${firstName}`.repeat(5)); //same as above
 
 /////////////////////////////////
 // Lecture: Arrow functions
-
+/*
 const years = [1990, 1984, 1982, 1937];
 
 //ES5
@@ -150,3 +150,227 @@ ages6 = years.map((element, index) => {
     return `Age element ${index + 1}: ${age}.`
 });
 console.log(ages6);
+*/
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////
+// Lecture: Arrow functions 2
+
+//ES5
+/*
+var box5 = {
+    color: 'green',
+    position: 1,
+    clickMe: function(){
+        var self = this;
+        document.querySelector('.green').addEventListener('click', function(){
+            //In this function 'this' keyword is pointed at global object not the box5 object
+            //var str = 'This box number ' + this.position + ' and it is ' + this.color;
+            var str = 'This box number ' + self.position + ' and it is ' + self.color;
+            alert(str);
+        })
+    }
+}
+box5.clickMe();
+*/
+
+
+//ES6
+/*
+const box6 = {
+    color: 'green',
+    position: 1,
+    clickMe: function(){
+        document.querySelector('.green').addEventListener('click', () => {
+            //'this keyword pointed to the object becasue the '=>' (ES6)
+            var str = 'This box number ' + this.position + ' and it is ' + this.color;
+            alert(str);
+        })
+    }
+}
+
+box6.clickMe();
+*/
+
+/*
+const box66 = {
+    color: 'green',
+    position: 1,
+    clickMe: () => {
+        //this method here also share 'this' keyword to global 'this' keyword becasue of line above '=>'
+        document.querySelector('.green').addEventListener('click', () => {
+            //'this keyword pointed to the object becasue the '=>' (ES6)
+            var str = 'This box number ' + this.position + ' and it is ' + this.color;
+            alert(str);
+        })
+    }
+}
+
+box66.clickMe();
+*/
+/*
+function Person(name){
+    this.name = name;
+}
+
+//ES5
+
+Person.prototype.myFriends5 = function(friends){
+    //'this' pointed to John object here
+    var arr = friends.map(function(el){
+        //'this' pointed to global
+        return this.name + ' is friend with ' + el;
+    }.bind(this));
+    console.log(arr);
+}
+
+var friends = ['Bob', 'Jane', 'Mark'];
+new Person('John').myFriends5(friends);
+*/
+
+/*
+//ES6
+Person.prototype.myFriends6 = function(friends){
+    //'this' pointed to John object here
+    var arr = friends.map((el) => {
+        return `${this.name} is friend with ${el}`
+    });
+    console.log(arr);
+}
+
+var friends = ['Bob', 'Jane', 'Mark'];
+new Person('John').myFriends6(friends);
+new Person('Mike').myFriends6(friends);
+*/
+
+
+
+
+
+
+
+
+
+/////////////////////////////////
+// Lecture: Destructuring
+
+// ES5
+/*
+var john = ['John' ,26];
+var name = john[0];
+var age = john[1];
+*/
+
+
+// ES6
+/*
+const [name,age] = ['John', 26];
+console.log(name);
+console.log(age);
+
+
+const obj = {
+    firstName: 'John',
+    lastName: 'Smith'
+};
+
+const {firstName,lastName} = obj;
+console.log(firstName);
+console.log(lastName);
+
+
+const {firstName: a, lastName: b} = obj;
+console.log(a);
+console.log(b);
+
+*/
+/*
+function calcAgeRetirement(year){
+    const age = new Date().getFullYear() - year;
+    return [age, 65-age];
+}
+
+const [age, retirement] = calcAgeRetirement(1990);
+console.log(age);
+console.log(retirement);
+*/
+
+
+
+
+
+
+
+
+/////////////////////////////////
+// Lecture: Arrays
+/*
+const boxes = document.querySelectorAll('.box');
+
+// ES5
+
+var boxesArray5 = Array.prototype.slice.call(boxes);
+boxesArray5.forEach(function(cur){
+    cur.style.backgroundColor = 'dodgerblue';
+});
+
+
+
+// ES6
+
+var boxesArray6 = Array.from(boxes);
+boxesArray6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+*/
+
+// ES5
+/*
+for (var i=0;i<boxesArray5.length;i++){
+    if(boxesArray5[i].className === 'box blue'){
+        continue;
+    }
+    boxesArray5[i].textContent = 'I changed to blue';
+}
+*/
+
+
+// ES6
+/*
+for(const currrent of boxesArray6){
+    if(currrent.className.includes('blue')){
+        continue;
+    }
+    currrent.textContent = 'I changed to blue';
+}
+*/
+
+
+// ES5
+/*
+var ages = [12,17,8,21,14,122]
+var fullAges = ages.map(function(cur){
+    return cur >= 18;
+});
+console.log(fullAges);
+
+console.log(fullAges.indexOf(true));
+console.log(ages[fullAges.indexOf(true)]);
+*/
+
+// ES6
+/*
+var ages = [12,17,8,21,14,122]
+var fullAges = ages.map(function(cur){
+    return cur >= 18;
+});
+console.log(ages.findIndex(cur => cur >= 18));
+console.log(ages.find(cur => cur >= 18));
+*/
+
