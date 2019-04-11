@@ -4,10 +4,11 @@
 
 
 
-
-
-
-
+var john = {
+    name: 'John',
+    fullName: this
+}
+console.log(john.fullName);
 
 
 
